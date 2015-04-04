@@ -45,6 +45,8 @@ public class TwitterFragment extends Fragment {
                 String token = authToken.token;
                 String secret = authToken.secret;
 
+                startSecondActivity();
+
             }
 
             @Override
@@ -57,18 +59,16 @@ public class TwitterFragment extends Fragment {
         return rootView;
     }
 
+
+    private void startSecondActivity(){
+        final Intent intent = new Intent(getActivity(), SuccessActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        // Pass the activity result to the fragment,
-        // which will then pass the result to the login button
-
-        Fragment fragment = getFragmentManager().findFragmentById(R.id.fragment_main);
-        if(fragment != null){
-            fragment.onActivityResult(requestCode, resultCode, data);
-        }
+        Log.d("TAG_APICONZ","Entro aqui");
+        loginButton.onActivityResult(requestCode, resultCode, data);
     }
-
-
 }

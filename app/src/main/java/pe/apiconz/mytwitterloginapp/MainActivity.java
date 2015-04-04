@@ -1,10 +1,11 @@
 package pe.apiconz.mytwitterloginapp;
 
-import android.app.Fragment;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,18 +26,19 @@ import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends ActionBarActivity {
 
+    public static final String TWITTER_FRAGMENT = "twitterFragment";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().add(R.id.container, new TwitterFragment()).commit();
-        }
 
         TwitterAuthConfig authConfig =
-                new TwitterAuthConfig("consumerKey",
-                        "consumerSecret");
+                new TwitterAuthConfig(Constants.TWITTER_KEY,
+                        Constants.TWITTER_SECRET);
         Fabric.with(this, new Twitter(authConfig));
+
+        setContentView(R.layout.activity_main);
     }
 
 
@@ -70,9 +72,13 @@ public class MainActivity extends ActionBarActivity {
         // Pass the activity result to the fragment,
         // which will then pass the result to the login button
 
-        Fragment fragment = getFragmentManager().findFragmentById(R.id.fragment_main);
+        Log.d("TAG_APICONZ","onActivityResult");
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_login);
         if(fragment != null){
+            Log.d("TAG_APICONZ","fagment is not null");
             fragment.onActivityResult(requestCode, resultCode, data);
+        }else{
+            Log.d("TAG_APICONZ","fragment is null");
         }
     }
 
