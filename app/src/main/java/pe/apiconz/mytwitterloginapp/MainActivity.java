@@ -27,17 +27,12 @@ import io.fabric.sdk.android.Fabric;
 public class MainActivity extends ActionBarActivity {
 
     public static final String TWITTER_FRAGMENT = "twitterFragment";
+    public static final String LOG_TAG = "TAG_APICONZ";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        TwitterAuthConfig authConfig =
-                new TwitterAuthConfig(Constants.TWITTER_KEY,
-                        Constants.TWITTER_SECRET);
-        Fabric.with(this, new Twitter(authConfig));
-
         setContentView(R.layout.activity_main);
     }
 
@@ -72,13 +67,13 @@ public class MainActivity extends ActionBarActivity {
         // Pass the activity result to the fragment,
         // which will then pass the result to the login button
 
-        Log.d("TAG_APICONZ","onActivityResult");
+        Log.d(LOG_TAG,"onActivityResult");
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_login);
         if(fragment != null){
-            Log.d("TAG_APICONZ","fagment is not null");
+            Log.d(LOG_TAG,"fagment is not null");
             fragment.onActivityResult(requestCode, resultCode, data);
         }else{
-            Log.d("TAG_APICONZ","fragment is null");
+            Log.d(LOG_TAG,"fragment is null");
         }
     }
 

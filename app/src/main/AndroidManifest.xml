@@ -13,14 +13,16 @@
             android:name="io.fabric.ApiKey"
             android:value="039ee2c7c1ef9f235c8e1e46762376b989d44c02" />
 
+        <activity android:name=".InitialActivity" android:label="My Twitter Login App">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".SuccessActivity"

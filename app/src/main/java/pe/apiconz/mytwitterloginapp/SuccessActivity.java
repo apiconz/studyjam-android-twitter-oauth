@@ -1,7 +1,10 @@
 package pe.apiconz.mytwitterloginapp;
 
+import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -11,6 +14,7 @@ public class SuccessActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("TAG_APICONZ","Entro a SuccessActivity");
         setContentView(R.layout.activity_success);
     }
 
@@ -36,4 +40,23 @@ public class SuccessActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Pass the activity result to the fragment,
+        // which will then pass the result to the login button
+
+        Log.d("TAG_APICONZ", "onActivityResult");
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_success);
+        if(fragment != null){
+            Log.d("TAG_APICONZ","fragment_success is not null");
+            fragment.onActivityResult(requestCode, resultCode, data);
+        }else{
+            Log.d("TAG_APICONZ","fragment_success is null");
+        }
+    }
+
 }

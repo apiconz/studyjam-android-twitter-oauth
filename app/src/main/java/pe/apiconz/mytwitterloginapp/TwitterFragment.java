@@ -21,6 +21,7 @@ import com.twitter.sdk.android.core.identity.TwitterLoginButton;
  */
 public class TwitterFragment extends Fragment {
 
+    public static final String LOG_TAG = "TAG_APICONZ";
     private TwitterLoginButton loginButton;
 
     public TwitterFragment() {
@@ -37,7 +38,7 @@ public class TwitterFragment extends Fragment {
             public void success(Result<TwitterSession> result) {
                 // Do something with result, which provides a
                 // TwitterSession for making API calls
-                Log.d("TAG_APICONZ", "Success");
+                Log.d(LOG_TAG, "Success");
 
                 TwitterSession session =
                         Twitter.getSessionManager().getActiveSession();
@@ -52,7 +53,7 @@ public class TwitterFragment extends Fragment {
             @Override
             public void failure(TwitterException exception) {
                 // Do something on failure
-                Log.d("TAG_APICONZ","Failure");
+                Log.d(LOG_TAG,"Failure");
             }
         });
 
